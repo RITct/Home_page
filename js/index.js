@@ -98,9 +98,9 @@ function circle(x, y, s, c, color) {
 
 var getCoor = function (c) {
     var top_left = [0 , 0];
-    var top_right = [0 , $(window).width()];
-    var bottom_left = [$(window).height() , 0];
-    var bottom_right = [$(window).height() ,$(window).width()];
+    var top_right = [0 , window.innerWidth];
+    var bottom_left = [window.innerHeight , 0];
+    var bottom_right = [window.innerHeight ,window.innerWidth];
     var return_coor = [top_left , top_right , bottom_left , bottom_right];
     return (return_coor[c]);
 };
@@ -145,43 +145,62 @@ function  splash() {
 var splatevent = setInterval(check_focus , 2000);
 
 
-$(document).click(function (e) {
+// $(document).click(function (e) {
+//     var target = e.target;
+//     console.log(target)
+//     if($(target).is(".side-menu")) {
+//         //clearInterval(splatevent);
+//         $(".sidemenu_about")[0].style.left = 0;
+//         $(".sidemenu_social")[0].style.top = 0;
+//         $(".overlay").fadeIn();
+//         /*
+//         $(".content , #canvas").css({
+//                 'filter'         : 'blur(5px)',
+//                 '-webkit-filter' : 'blur(5px)',
+//                 '-moz-filter'    : 'blur(5px)',
+//                 '-o-filter'      : 'blur(5px)',
+//                 '-ms-filter'     : 'blur(5px)'
+//             });
+//             */
+//         $(".sidemenu_icon").fadeOut();
+//     }
+//     else{
+//         //splatevent = setInterval(check_focus , 2000);
+//         $(".sidemenu_about")[0].style.left = -100+ '%';
+//         $(".sidemenu_social")[0].style.top  = -100 + '%';
+//         $(".overlay").fadeOut();
+//         /*
+//         $(".content , #canvas").css({
+//             'filter'         : 'blur(0px)',
+//             '-webkit-filter' : 'blur(0px)',
+//             '-moz-filter'    : 'blur(0px)',
+//             '-o-filter'      : 'blur(0px)',
+//             '-ms-filter'     : 'blur(0px)'
+//         });
+//         */
+//         $(".sidemenu_icon").fadeIn();
+//     }
+// });
+document.onclick = function (e) {
     var target = e.target;
-    console.log(target)
-    if($(target).is(".side-menu")) {
-        //clearInterval(splatevent);
-        $(".sidemenu_about")[0].style.left = 0;
-        $(".sidemenu_social")[0].style.top = 0;
-        $(".overlay").fadeIn();
-        /*
-        $(".content , #canvas").css({
-                'filter'         : 'blur(5px)',
-                '-webkit-filter' : 'blur(5px)',
-                '-moz-filter'    : 'blur(5px)',
-                '-o-filter'      : 'blur(5px)',
-                '-ms-filter'     : 'blur(5px)'
-            });
-            */
-        $(".sidemenu_icon").fadeOut();
+    console.log(target);
+    if(target.className==="side-menu"){
+        document.getElementsByClassName("sidemenu_about")[0].style.left = 0;
+        document.getElementsByClassName("sidemenu_social")[0].style.top = 0;
+        document.getElementsByClassName("overlay")[0].style.opacity = 1;
+        document.getElementsByClassName("overlay")[0].style.zIndex = 5;
+
+        document.getElementsByClassName("sidemenu_icon")[0].style.opacity = 0;
     }
     else{
-        //splatevent = setInterval(check_focus , 2000);
-        $(".sidemenu_about")[0].style.left = -100+ '%';
-        $(".sidemenu_social")[0].style.top  = -100 + '%';
-        $(".overlay").fadeOut();
-        /*
-        $(".content , #canvas").css({
-            'filter'         : 'blur(0px)',
-            '-webkit-filter' : 'blur(0px)',
-            '-moz-filter'    : 'blur(0px)',
-            '-o-filter'      : 'blur(0px)',
-            '-ms-filter'     : 'blur(0px)'
-        });
-        */
-        $(".sidemenu_icon").fadeIn();
+        document.getElementsByClassName("sidemenu_about")[0].style.left = -100 + '%';
+        document.getElementsByClassName("sidemenu_social")[0].style.top = -100 + '%';
+        document.getElementsByClassName("overlay")[0].style.opacity = 0 ;
+        document.getElementsByClassName("overlay")[0].style.zIndex = 0;
+        document.getElementsByClassName("sidemenu_icon")[0].style.opacity = 1;
     }
-});
 
+};
 //Menu
 
 var menubtn = document.getElementsByClassName("circle-menubar-button")[0];
